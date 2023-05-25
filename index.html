@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>图片查看</title>
+    <style>
+        #image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #image-container img {
+            max-height: 80vh;
+            max-width: 90vw;
+        }
+
+        #prev-btn, #next-btn {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+            font-size: 24px;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 8px 16px;
+            border-radius: 4px;
+        }
+
+        #prev-btn {
+            left: 16px;
+        }
+
+        #next-btn {
+            right: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div id="image-container">
+        <img id="current-image" src="C:\Users\可可\Downloads\1.jpeg" alt="Image">
+    </div>
+    <div id="prev-btn">&lt; Previous</div>
+    <div id="next-btn">Next &gt;</div>
+
+    <script src="path/to/your/javascript/file.js"></script>
+    <script>
+        var images = ["C:/Users/18210/Desktop/网站材料/图片整理/45张/IMG_0984.JPG", "C:/Users/18210/Desktop/网站材料/图片整理/45张/IMG_1248.JPG", "C:/Users/18210/Desktop/网站材料/图片整理/45张/IMG_1454.JPG","C:/Users/18210/Desktop/网站材料/图片整理/45张/IMG_1667.JPG"]; // 图片路径列表
+        var currentIndex = 0;
+        var imageElement = document.getElementById("current-image");
+        var prevBtn = document.getElementById("prev-btn");
+        var nextBtn = document.getElementById("next-btn");
+    
+        // 显示当前索引对应的图片
+        function showImage(index) {
+            imageElement.src = images[index];
+        }
+    
+        // 显示上一张图片
+        function showPreviousImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        }
+    
+        // 显示下一张图片
+        function showNextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        }
+    
+        // 绑定按钮的点击事件
+        prevBtn.addEventListener("click", showPreviousImage);
+        nextBtn.addEventListener("click", showNextImage);
+    
+        // 显示初始图片
+        showImage(currentIndex);
+    </script>
+    
+</body>
+</html>
